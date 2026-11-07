@@ -35,4 +35,3 @@ export default {
       const response = await fetch(
       `https://api.puntersedge.online/v1/racing/next-to-go?num_races=${count}&categories=horse&country=AU&include_unresolved=true`,
   }
-};

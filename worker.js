@@ -33,34 +33,6 @@ export default {
       ));
 
       const response = await fetch(
-        `https://api.puntersedge.online/v1/racing/next-to-go?num_races=${count}&categories=horse&country=AU`,
-        {
-          headers: {
-            "X-API-Key": env.PUNTERSEDGE_API_KEY
-          },
-          signal: AbortSignal.timeout(12000)
-        }
-      );
-
-      if (!response.ok) {
-        return Response.json({ error: "Racing provider error" }, {
-          status: 502, headers: cors
-        });
-      }
-
-      const races = await response.json();
-
-      return Response.json({
-        provider: "PuntersEdge",
-        retrievedAt: new Date().toISOString(),
-        count: races.length,
-        races
-      }, { headers: cors });
-
-    } catch {
-      return Response.json({ error: "Racing feed unavailable" }, {
-        status: 502, headers: cors
-      });
-    }
+      `https://api.puntersedge.online/v1/racing/next-to-go?num_races=${count}&categories=horse&country=AU&include_unresolved=true`,
   }
 };
